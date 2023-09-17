@@ -70,8 +70,11 @@ addNewBookBtn.addEventListener("click", (e) => {
     console.log(lastId);
 })
 
-// libraryElement.addEventListener("click", (e) =>{
-//     if(e.target.id == "deleteBookBtn"){
-//         console.log(e.target);
-//     }
-// })
+//Removes the book
+libraryElement.addEventListener("click", (e) =>{
+    if(e.target.id == "deleteBookBtn"){
+        let bookId = e.target.parentNode.dataset.id;
+        console.log(bookId)
+        e.target.parentNode.remove();
+    }
+})
