@@ -6,3 +6,9 @@
     border: 1px black solid;
     padding: 2rem;
 }
+
+#addNewBookDialog > form{
+    display: flex;
+    flex-direction: column;
+
+}
