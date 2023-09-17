@@ -54,12 +54,19 @@ addNewBookModalBtn.addEventListener("click", () =>{
 
 //handles the addnewbook or close button in modal
 addNewBookBtn.addEventListener("click", (e) => {
+    let lastId = myLibrary.pop()['id'];
     let tempObject = {};
     e.preventDefault();
     addNewBookDialog.close();
 
+    tempObject["id"] = lastId + 1
+
     inputs.forEach(input => {
+
         tempObject[input.id] = input.value
     });
     addBook(tempObject);
+    console.log(lastId);
 })
+
+// console.log(myLibrary.pop())
