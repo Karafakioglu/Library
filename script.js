@@ -4,6 +4,7 @@ const addNewBookModalBtn = document.getElementById("addNewBookModalBtn");
 const addNewBookDialog = document.getElementById("addNewBookDialog");
 const addNewBookBtn = document.getElementById("addNewBookBtn");
 const inputs = document.querySelectorAll(".input");
+const deleteBookBtn = document.querySelector("#deleteBookBtn");
 
 
 //Book constructor
@@ -30,6 +31,7 @@ function renderBook(book) {
             <li>${book.pagesRead}</li>
             <li>${book.isRead}</li>
         </ol>
+        <button id= "deleteBookBtn">Delete Book</button>
     </div>`;
     libraryElement.insertAdjacentHTML('beforeend', bookElem);
 }
@@ -54,19 +56,22 @@ addNewBookModalBtn.addEventListener("click", () =>{
 
 //handles the addnewbook or close button in modal
 addNewBookBtn.addEventListener("click", (e) => {
-    let lastId = myLibrary.pop()['id'];
-    let tempObject = {};
+    let lastId = myLibrary[myLibrary.length -1].id;
+    let tempObject = {
+        id: lastId + 1
+    };
     e.preventDefault();
     addNewBookDialog.close();
 
-    tempObject["id"] = lastId + 1
-
     inputs.forEach(input => {
-
         tempObject[input.id] = input.value
     });
     addBook(tempObject);
     console.log(lastId);
 })
 
-// console.log(myLibrary.pop())
+// libraryElement.addEventListener("click", (e) =>{
+//     if(e.target.id == "deleteBookBtn"){
+//         console.log(e.target);
+//     }
+// })
