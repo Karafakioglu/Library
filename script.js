@@ -6,18 +6,6 @@ const addNewBookBtn = document.getElementById("addNewBookBtn");
 const inputs = document.querySelectorAll(".input");
 const deleteBookBtn = document.querySelector("#deleteBookBtn");
 
-const testBtn = document.getElementById("testBtn");
-
-testBtn.addEventListener("click", () => {
-    let lastId;
-    if(myLibrary.length > 0){
-        lastId = myLibrary[myLibrary.length -1].id;
-    }
-    else{
-        lastId = 1;
-    }
-    console.log(lastId);
-})
 
 //Book constructor
 function Book(id, title, author, pagesRead, isRead){
@@ -75,7 +63,7 @@ addNewBookModalBtn.addEventListener("click", () =>{
 addNewBookBtn.addEventListener("click", (e) => {
     let lastId;
     let tempObject = {};
-    if(myLibrary>0){ //if library is not empty 
+    if(myLibrary.length >0 ){ //if library is not empty 
         lastId = myLibrary[myLibrary.length -1].id + 1; //last id is the last id plus one (for the next books id)
         tempObject.id = lastId;
     }else{
