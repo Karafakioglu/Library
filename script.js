@@ -6,6 +6,18 @@ const addNewBookBtn = document.getElementById("addNewBookBtn");
 const inputs = document.querySelectorAll(".input");
 const deleteBookBtn = document.querySelector("#deleteBookBtn");
 
+const testBtn = document.getElementById("testBtn");
+
+testBtn.addEventListener("click", () => {
+    let lastId;
+    if(myLibrary.length > 0){
+        lastId = myLibrary[myLibrary.length -1].id;
+    }
+    else{
+        lastId = 1;
+    }
+    console.log(lastId);
+})
 
 //Book constructor
 function Book(id, title, author, pagesRead, isRead){
@@ -22,7 +34,7 @@ Book.prototype.toggleReadStatus = function() {
 
 //Creating temp data
 let book1 = new Book(1 ,"Test Book", "Test Author", "111", "Not Read");
-let book2 = new Book(1 ,"Test Book", "Test Author", "111", "Not Read");
+let book2 = new Book(2 ,"Test Book", "Test Author", "111", "Not Read");
 
 myLibrary.push(book1,book2);
 
@@ -61,10 +73,15 @@ addNewBookModalBtn.addEventListener("click", () =>{
 
 //handles the addnewbook or close button in modal
 addNewBookBtn.addEventListener("click", (e) => {
-    let lastId = myLibrary[myLibrary.length -1].id;
-    let tempObject = {
-        id: lastId + 1
-    };
+    let lastId;
+    let tempObject = {};
+    if(myLibrary>0){ //if library is not empty 
+        lastId = myLibrary[myLibrary.length -1].id + 1; //last id is the last id plus one (for the next books id)
+        tempObject.id = lastId;
+    }else{
+        tempObject.id = 1; //if library empty, set the first id to 1
+    }
+
     e.preventDefault();
     addNewBookDialog.close();
 
@@ -74,6 +91,10 @@ addNewBookBtn.addEventListener("click", (e) => {
     addBook(tempObject);
     console.log(lastId);
 })
+
+
+
+
 
 //Removes the book
 libraryElement.addEventListener("click", (e) =>{
