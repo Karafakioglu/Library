@@ -4,7 +4,7 @@ const addNewBookModalBtn = document.getElementById("addNewBookModalBtn");
 const addNewBookDialog = document.getElementById("addNewBookDialog");
 const addNewBookBtn = document.getElementById("addNewBookBtn");
 const inputs = document.querySelectorAll(".input");
-const deleteBookBtn = document.querySelector("#deleteBookBtn");
+const deleteBookBtn = document.querySelector(".deleteBookBtn");
 
 
 //Book constructor
@@ -35,8 +35,8 @@ function renderBook(book) {
             <li>${book.pagesRead}</li>
             <li>${book.isRead}</li>
         </ol>
-        <button id = "deleteBookBtn">Delete Book</button>
-        <button id = "changeReadStateBtn">Change Read Status</button>
+        <button class = "deleteBookBtn">Delete Book</button>
+        <button class = "changeReadStateBtn">Change Read Status</button>
     </div>`;
     libraryElement.insertAdjacentHTML('beforeend', bookElem);
 }
@@ -86,7 +86,7 @@ addNewBookBtn.addEventListener("click", (e) => {
 
 //Removes the book
 libraryElement.addEventListener("click", (e) =>{
-    if(e.target.id == "deleteBookBtn"){
+    if(e.target.className == "deleteBookBtn"){
         let bookId = e.target.parentNode.dataset.id;
         console.log(bookId)
         e.target.parentNode.remove();
@@ -99,7 +99,7 @@ libraryElement.addEventListener("click", (e) =>{
 
 
 libraryElement.addEventListener("click", (e) => {
-    if(e.target.id == "changeReadStateBtn") {
+    if(e.target.className == "changeReadStateBtn") {
         let bookId = +e.target.parentNode.dataset.id;  // Using + to convert string to number
         let book = myLibrary.find(b => b.id === bookId);
         
