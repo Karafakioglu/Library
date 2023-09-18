@@ -15,10 +15,14 @@ function Book(id, title, author, pagesRead, isRead){
     this.pagesRead = pagesRead;
     this.isRead = isRead;
 }
+//Checks the read status and changes the status to the opposite
+Book.prototype.toggleReadStatus = function() {
+    this.isRead = (this.isRead === "Read") ? "Not Read" : "Read";
+};
 
 //Creating temp data
-let book1 = new Book(1 ,"First Book", "Some Author", "112", "Not read");
-let book2 = new Book(2, "Second Book", "Another Author", "0", "Not read");
+let book1 = new Book(1 ,"Test Book", "Test Author", "111", "Not Read");
+let book2 = new Book(1 ,"Test Book", "Test Author", "111", "Not Read");
 
 myLibrary.push(book1,book2);
 
@@ -31,7 +35,8 @@ function renderBook(book) {
             <li>${book.pagesRead}</li>
             <li>${book.isRead}</li>
         </ol>
-        <button id= "deleteBookBtn">Delete Book</button>
+        <button id = "deleteBookBtn">Delete Book</button>
+        <button id = "changeReadStateBtn">Change Read Status</button>
     </div>`;
     libraryElement.insertAdjacentHTML('beforeend', bookElem);
 }
@@ -44,7 +49,7 @@ myLibrary.forEach(book => {
 
 
 function addBook(book){
-    myLibrary.push(book);
+    myLibrary.push(new Book(book.id, book.title, book.author, book.pagesRead, book.isRead));
     renderBook(book);  // Render the new book after adding
 }
 
@@ -76,5 +81,25 @@ libraryElement.addEventListener("click", (e) =>{
         let bookId = e.target.parentNode.dataset.id;
         console.log(bookId)
         e.target.parentNode.remove();
+        const index = myLibrary.findIndex(element => element.id == bookId);
+        if (index !== -1) {
+            myLibrary.splice(index, 1);
+        }
     }
 })
+
+
+libraryElement.addEventListener("click", (e) => {
+    if(e.target.id == "changeReadStateBtn") {
+        let bookId = +e.target.parentNode.dataset.id;  // Using + to convert string to number
+        let book = myLibrary.find(b => b.id === bookId);
+        
+        if (book) {
+            book.toggleReadStatus();
+        }
+
+        // Re-render the library or just update the specific book's display.
+        libraryElement.innerHTML = "";
+        myLibrary.forEach(renderBook);
+    }
+});
