@@ -33,7 +33,7 @@ function renderBook(book) {
             <li>${book.title}</li>
             <li>${book.author}</li>
             <li>${book.pagesRead}</li>
-            <li>${book.isRead}</li>
+            <li class="read-status">${book.isRead}</li>
         </ol>
         <button class = "deleteBookBtn">Delete Book</button>
         <button class = "changeReadStateBtn">Change Read Status</button>
@@ -51,6 +51,13 @@ myLibrary.forEach(book => {
 function addBook(book){
     myLibrary.push(new Book(book.id, book.title, book.author, book.pagesRead, book.isRead));
     renderBook(book);  // Render the new book after adding
+}
+
+//Updates only a specific book html
+function updateBookDisplay(book){
+    const bookElem = document.querySelector(`.book[data-id="${book.id}"]`);
+
+    bookElem.querySelector(".read-status").textContent = book.isRead;
 }
 
 
@@ -107,8 +114,6 @@ libraryElement.addEventListener("click", (e) => {
             book.toggleReadStatus();
         }
 
-        // Re-render the library or just update the specific book's display.
-        libraryElement.innerHTML = "";
-        myLibrary.forEach(renderBook);
+        updateBookDisplay(book);
     }
 });
