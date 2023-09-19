@@ -5,6 +5,10 @@ const addNewBookDialog = document.getElementById("addNewBookDialog");
 const addNewBookBtn = document.getElementById("addNewBookBtn");
 const inputs = document.querySelectorAll(".input");
 const deleteBookBtn = document.querySelector(".deleteBookBtn");
+const addBookForm = document.getElementById("addBookForm");
+const closeNewBookBtn = document.getElementById("closeNewBookBtn");
+
+console.log(addBookForm);
 
 
 //Book constructor
@@ -84,7 +88,13 @@ addNewBookBtn.addEventListener("click", (e) => {
         tempObject[input.id] = input.value
     });
     addBook(tempObject);
-    console.log(lastId);
+
+    addBookForm.reset(); //reset the form inputs
+})
+
+//reset the form inputs
+closeNewBookBtn.addEventListener("click", () =>{
+    addBookForm.reset();
 })
 
 
