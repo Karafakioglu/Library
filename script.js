@@ -8,8 +8,6 @@ const deleteBookBtn = document.querySelector(".deleteBookBtn");
 const addBookForm = document.getElementById("addBookForm");
 const closeNewBookBtn = document.getElementById("closeNewBookBtn");
 
-console.log(addBookForm);
-
 
 //Book constructor
 function Book(id, title, author, pagesRead, isRead){
