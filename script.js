@@ -8,16 +8,6 @@ const deleteBookBtn = document.querySelector(".deleteBookBtn");
 const addBookForm = document.getElementById("addBookForm");
 const closeNewBookBtn = document.getElementById("closeNewBookBtn");
 
-
-//Book constructor
-// function Book(id, title, author, pagesRead, isRead){
-//     this.id = id;
-//     this.title = title;
-//     this.author = author;
-//     this.pagesRead = pagesRead;
-//     this.isRead = isRead;
-// }
-
 class Book{
     constructor(id,title,author,pagesRead, isRead){
         this.id = id;
@@ -31,10 +21,7 @@ class Book{
         this.isRead = (this.isRead === "Read") ? "Not Read" : "Read";
     }
 }
-//Checks the read status and changes the status to the opposite
-// Book.prototype.toggleReadStatus = function() {
-//     this.isRead = (this.isRead === "Read") ? "Not Read" : "Read";
-// };
+
 
 //Creating temp data
 let book1 = new Book(1 ,"Test Book", "Test Author", "111", "Not Read");
